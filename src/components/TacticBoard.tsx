@@ -20,8 +20,9 @@ const TacticBoard: React.FC<Props> = ({ tactic, onIncorrect, onSolve }) => {
 
   useEffect(() => {
     setTimeout(() => {
-      chess.move(tactic.blunderMove);
-      setFen(chess.fen());
+      if (chess.move(tactic.blunderMove)) {
+        setFen(chess.fen());
+      }
     }, 300);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
