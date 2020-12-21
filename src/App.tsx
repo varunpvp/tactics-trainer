@@ -43,9 +43,12 @@ function App() {
 }
 
 async function fetchTactic() {
-  const res = await axios.post("https://chessblunders.org/api/blunder/get", {
-    type: "explore",
-  });
+  const res = await axios.post(
+    `${process.env.REACT_APP_CHESSBLUNDERS_API}/blunder/get`,
+    {
+      type: "explore",
+    }
+  );
 
   const data = res.data.data;
 
