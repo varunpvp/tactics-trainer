@@ -5,30 +5,18 @@ import TacticBoard from "./components/TacticBoard";
 import axios from "axios";
 
 function App() {
+  const [loading, setLoading] = useState(true);
   const [tactic, setTactic] = useState<Tactic>({
     id: "start",
     fen: "start",
     blunderMove: "e4",
     solution: "e5",
   });
-  const [loading, setLoading] = useState(true);
 
   const loadTactic = async () => {
     try {
       setLoading(true);
-      const res = await axios.post(
-        "https://chessblunders.org/api/blunder/get",
-        {
-          type: "explore",
-        }
-      );
-      const data = res.data.data;
-      setTactic({
-        id: data.id,
-        fen: data.fenBefore,
-        blunderMove: data.blunderMove,
-        solution: data.forcedLine[0],
-      });
+      setTactic(await fetchTactic());
     } catch (error) {
       console.log("Error loading tactic", { error });
     } finally {
@@ -52,6 +40,21 @@ function App() {
       {loading && <div className="overlay-loading">Loading...</div>}
     </div>
   );
+}
+
+async function fetchTactic() {
+  const res = await axios.post("https://chessblunders.org/api/blunder/get", {
+    type: "explore",
+  });
+
+  const data = res.data.data;
+
+  return {
+    id: data.id,
+    fen: data.fenBefore,
+    blunderMove: data.blunderMove,
+    solution: data.forcedLine[0],
+  };
 }
 
 export default App;
