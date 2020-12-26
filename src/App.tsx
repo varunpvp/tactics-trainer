@@ -6,35 +6,33 @@ import axios from "axios";
 import { getSideToPlayFromFen } from "./utils";
 
 function App() {
-  const [loading, setLoading] = useState(true);
-  const [tactic, setTactic] = useState<Tactic>({
-    id: "start",
-    fen: "start",
-    blunderMove: "e4",
-    solution: ["e5"],
-  });
-
+  const [tactics, setTactics] = useState<Tactic[]>([]);
   const [hint, setHint] = useState<
     "sideToPlay" | "incorrect" | "correct" | "solved"
   >("sideToPlay");
 
-  const sideToPlay = getSideToPlayFromFen(tactic.fen);
-
   const loadTactic = async () => {
     try {
-      setLoading(true);
-      setTactic(await fetchTactic());
+      const newTactic = await fetchTactic();
+      setTactics((it) => it.concat(newTactic));
       setHint("sideToPlay");
     } catch (error) {
       console.log("Error loading tactic", { error });
-    } finally {
-      setLoading(false);
     }
   };
 
   useEffect(() => {
     loadTactic();
+    loadTactic();
   }, []);
+
+  if (tactics.length === 0) {
+    return <div className="overlay-loading">Loading...</div>;
+  }
+
+  const tactic = tactics[0];
+
+  const sideToPlay = getSideToPlayFromFen(tactic.fen);
 
   return (
     <div className="flex-center">
@@ -52,6 +50,7 @@ function App() {
         }}
         onSolve={() => {
           setHint("solved");
+          setTactics((it) => it.slice(1));
           loadTactic();
         }}
       />
@@ -72,8 +71,6 @@ function App() {
       {hint === "solved" && (
         <div className="tactic-hint tactic-hint-success">Solved!</div>
       )}
-
-      {loading && <div className="overlay-loading">Loading...</div>}
     </div>
   );
 }
