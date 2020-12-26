@@ -4,11 +4,11 @@ import { Howl } from "howler";
 const Chess = require("chess.js");
 
 export const moveSound = new Howl({
-  src: ["/move.mp3"],
+  src: ["move.mp3"],
 });
 
 export const errorSound = new Howl({
-  src: ["/error.mp3"],
+  src: ["error.mp3"],
 });
 
 export function getSideToPlayFromFen(fen: string) {
