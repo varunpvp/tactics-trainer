@@ -30,6 +30,7 @@ const TacticBoard: React.FC<Props> = ({
         onAutoPlay();
       }
     }, 100);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleMove = (move: string | ShortMove) => {
