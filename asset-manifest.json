@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/varunpvp/tactics-trainer/static/css/main.73084571.chunk.css",
-    "main.js": "/varunpvp/tactics-trainer/static/js/main.73f1c5c8.chunk.js",
-    "main.js.map": "/varunpvp/tactics-trainer/static/js/main.73f1c5c8.chunk.js.map",
-    "runtime-main.js": "/varunpvp/tactics-trainer/static/js/runtime-main.d896dfea.js",
-    "runtime-main.js.map": "/varunpvp/tactics-trainer/static/js/runtime-main.d896dfea.js.map",
-    "static/js/2.a8757294.chunk.js": "/varunpvp/tactics-trainer/static/js/2.a8757294.chunk.js",
-    "static/js/2.a8757294.chunk.js.map": "/varunpvp/tactics-trainer/static/js/2.a8757294.chunk.js.map",
-    "static/js/3.a2bc4560.chunk.js": "/varunpvp/tactics-trainer/static/js/3.a2bc4560.chunk.js",
-    "static/js/3.a2bc4560.chunk.js.map": "/varunpvp/tactics-trainer/static/js/3.a2bc4560.chunk.js.map",
-    "index.html": "/varunpvp/tactics-trainer/index.html",
-    "static/css/main.73084571.chunk.css.map": "/varunpvp/tactics-trainer/static/css/main.73084571.chunk.css.map",
-    "static/js/2.a8757294.chunk.js.LICENSE.txt": "/varunpvp/tactics-trainer/static/js/2.a8757294.chunk.js.LICENSE.txt"
+    "main.css": "/tactics-trainer/static/css/main.73084571.chunk.css",
+    "main.js": "/tactics-trainer/static/js/main.63224da5.chunk.js",
+    "main.js.map": "/tactics-trainer/static/js/main.63224da5.chunk.js.map",
+    "runtime-main.js": "/tactics-trainer/static/js/runtime-main.dbf573c9.js",
+    "runtime-main.js.map": "/tactics-trainer/static/js/runtime-main.dbf573c9.js.map",
+    "static/js/2.a8757294.chunk.js": "/tactics-trainer/static/js/2.a8757294.chunk.js",
+    "static/js/2.a8757294.chunk.js.map": "/tactics-trainer/static/js/2.a8757294.chunk.js.map",
+    "static/js/3.a2bc4560.chunk.js": "/tactics-trainer/static/js/3.a2bc4560.chunk.js",
+    "static/js/3.a2bc4560.chunk.js.map": "/tactics-trainer/static/js/3.a2bc4560.chunk.js.map",
+    "index.html": "/tactics-trainer/index.html",
+    "static/css/main.73084571.chunk.css.map": "/tactics-trainer/static/css/main.73084571.chunk.css.map",
+    "static/js/2.a8757294.chunk.js.LICENSE.txt": "/tactics-trainer/static/js/2.a8757294.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.d896dfea.js",
+    "static/js/runtime-main.dbf573c9.js",
     "static/js/2.a8757294.chunk.js",
     "static/css/main.73084571.chunk.css",
-    "static/js/main.73f1c5c8.chunk.js"
+    "static/js/main.63224da5.chunk.js"
   ]
 }
