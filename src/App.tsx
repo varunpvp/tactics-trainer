@@ -56,6 +56,9 @@ function App() {
           setTactics((it) => it.slice(1));
           loadTactic();
         }}
+        onAutoPlay={() => {
+          moveSound.play();
+        }}
       />
       {hint === "sideToPlay" && (
         <div className="tactic-hint">
