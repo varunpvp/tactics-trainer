@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/tactics-trainer/static/css/main.73084571.chunk.css",
-    "main.js": "/tactics-trainer/static/js/main.54c2556b.chunk.js",
-    "main.js.map": "/tactics-trainer/static/js/main.54c2556b.chunk.js.map",
+    "main.css": "/tactics-trainer/static/css/main.86039b49.chunk.css",
+    "main.js": "/tactics-trainer/static/js/main.387befc6.chunk.js",
+    "main.js.map": "/tactics-trainer/static/js/main.387befc6.chunk.js.map",
     "runtime-main.js": "/tactics-trainer/static/js/runtime-main.dbf573c9.js",
     "runtime-main.js.map": "/tactics-trainer/static/js/runtime-main.dbf573c9.js.map",
-    "static/js/2.a8757294.chunk.js": "/tactics-trainer/static/js/2.a8757294.chunk.js",
-    "static/js/2.a8757294.chunk.js.map": "/tactics-trainer/static/js/2.a8757294.chunk.js.map",
+    "static/js/2.81fcf795.chunk.js": "/tactics-trainer/static/js/2.81fcf795.chunk.js",
+    "static/js/2.81fcf795.chunk.js.map": "/tactics-trainer/static/js/2.81fcf795.chunk.js.map",
     "static/js/3.a2bc4560.chunk.js": "/tactics-trainer/static/js/3.a2bc4560.chunk.js",
     "static/js/3.a2bc4560.chunk.js.map": "/tactics-trainer/static/js/3.a2bc4560.chunk.js.map",
     "index.html": "/tactics-trainer/index.html",
-    "static/css/main.73084571.chunk.css.map": "/tactics-trainer/static/css/main.73084571.chunk.css.map",
-    "static/js/2.a8757294.chunk.js.LICENSE.txt": "/tactics-trainer/static/js/2.a8757294.chunk.js.LICENSE.txt"
+    "static/css/main.86039b49.chunk.css.map": "/tactics-trainer/static/css/main.86039b49.chunk.css.map",
+    "static/js/2.81fcf795.chunk.js.LICENSE.txt": "/tactics-trainer/static/js/2.81fcf795.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.dbf573c9.js",
-    "static/js/2.a8757294.chunk.js",
-    "static/css/main.73084571.chunk.css",
-    "static/js/main.54c2556b.chunk.js"
+    "static/js/2.81fcf795.chunk.js",
+    "static/css/main.86039b49.chunk.css",
+    "static/js/main.387befc6.chunk.js"
   ]
 }
