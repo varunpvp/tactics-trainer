@@ -46,5 +46,5 @@
   "devDependencies": {
     "@types/chess.js": "^0.10.1"
   },
-  "homepage": "https://github.com/varunpvp/tactics-trainer"
+  "homepage": "https://varunpvp.github.io/tactics-trainer"
 }
