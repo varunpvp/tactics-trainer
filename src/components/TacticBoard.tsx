@@ -13,29 +13,38 @@ interface Props {
 
 const TacticBoard: React.FC<Props> = ({ tactic, onIncorrect, onSolve }) => {
   const [fen, setFen] = useState(tactic.fen);
-  const [chess] = useState<ChessInstance>(new Chess(tactic.fen));
-  const [orientation] = useState<"black" | "white">(
-    chess.turn() === "w" ? "black" : "white"
-  );
+  const [orientation] = useState(getSideToPlayFromFen(tactic.fen));
+  const [solution, setSolution] = useState(tactic.solution);
 
   useEffect(() => {
     setTimeout(() => {
-      if (chess.move(tactic.blunderMove)) {
-        setFen(chess.fen());
+      const next = makeMove(tactic.fen, tactic.blunderMove);
+      if (next) {
+        setFen(next.fen);
       }
-    }, 300);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    }, 100);
+  }, [tactic]);
 
-  const handleMove = (move: ShortMove) => {
-    const fullMove = chess.move(move);
-    if (fullMove) {
-      if (fullMove.san === tactic.solution) {
-        setFen(chess.fen());
-        onSolve();
+  const handleMove = (move: string | ShortMove) => {
+    const next = validateMove(fen, move, solution);
+
+    if (next) {
+      setFen(next.fen);
+      setSolution(next.solution);
+
+      if (next.solution.length > 0) {
+        const autoNext = validateMove(
+          next.fen,
+          next.solution[0],
+          next.solution
+        );
+
+        if (autoNext) {
+          setFen(autoNext.fen);
+          setSolution(autoNext.solution);
+        }
       } else {
-        chess.undo();
-        onIncorrect();
+        onSolve();
       }
     } else {
       onIncorrect();
@@ -44,9 +53,10 @@ const TacticBoard: React.FC<Props> = ({ tactic, onIncorrect, onSolve }) => {
 
   return (
     <Chessboard
+      transitionDuration={200}
       position={fen}
       width={400}
-      orientation={orientation}
+      orientation={orientation === "b" ? "white" : "black"}
       onDrop={(move) =>
         handleMove({
           from: move.sourceSquare,
@@ -57,5 +67,37 @@ const TacticBoard: React.FC<Props> = ({ tactic, onIncorrect, onSolve }) => {
     />
   );
 };
+
+function getSideToPlayFromFen(fen: string) {
+  const chess: ChessInstance = new Chess(fen);
+  return chess.turn();
+}
+
+function makeMove(fen: string, move: ShortMove | string) {
+  const chess: ChessInstance = new Chess(fen);
+  const fullMove = chess.move(move);
+  return fullMove ? { fullMove, fen: chess.fen() } : null;
+}
+
+function validateMove(
+  fen: string,
+  move: ShortMove | string,
+  solution: string[]
+): null | { solution: string[]; fen: string } {
+  if (solution.length === 0) {
+    return null;
+  }
+
+  const next = makeMove(fen, move);
+
+  if (next && next.fullMove.san === solution[0]) {
+    return {
+      fen: next.fen,
+      solution: solution.slice(1),
+    };
+  }
+
+  return null;
+}
 
 export default TacticBoard;

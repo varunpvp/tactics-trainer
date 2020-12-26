@@ -10,7 +10,7 @@ function App() {
     id: "start",
     fen: "start",
     blunderMove: "e4",
-    solution: "e5",
+    solution: ["e5"],
   });
 
   const loadTactic = async () => {
@@ -56,7 +56,7 @@ async function fetchTactic() {
     id: data.id,
     fen: data.fenBefore,
     blunderMove: data.blunderMove,
-    solution: data.forcedLine[0],
+    solution: data.forcedLine,
   };
 }
 
