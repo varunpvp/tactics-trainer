@@ -20,6 +20,8 @@ jobs:
         run: |
           yarn
           yarn build
+        env:
+          REACT_APP_CHESSBLUNDERS_API: ${{ secrets.REACT_APP_CHESSBLUNDERS_API }}
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@3.7.1
