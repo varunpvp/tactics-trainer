@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/tactics-trainer/static/css/main.73084571.chunk.css",
-    "main.js": "/tactics-trainer/static/js/main.63224da5.chunk.js",
-    "main.js.map": "/tactics-trainer/static/js/main.63224da5.chunk.js.map",
+    "main.js": "/tactics-trainer/static/js/main.54c2556b.chunk.js",
+    "main.js.map": "/tactics-trainer/static/js/main.54c2556b.chunk.js.map",
     "runtime-main.js": "/tactics-trainer/static/js/runtime-main.dbf573c9.js",
     "runtime-main.js.map": "/tactics-trainer/static/js/runtime-main.dbf573c9.js.map",
     "static/js/2.a8757294.chunk.js": "/tactics-trainer/static/js/2.a8757294.chunk.js",
@@ -17,6 +17,6 @@
     "static/js/runtime-main.dbf573c9.js",
     "static/js/2.a8757294.chunk.js",
     "static/css/main.73084571.chunk.css",
-    "static/js/main.63224da5.chunk.js"
+    "static/js/main.54c2556b.chunk.js"
   ]
 }
