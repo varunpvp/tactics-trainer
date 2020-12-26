@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Tactic from "./types/Tactic";
 import TacticBoard from "./components/TacticBoard";
 import axios from "axios";
+import { getSideToPlayFromFen } from "./utils";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -13,10 +14,17 @@ function App() {
     solution: ["e5"],
   });
 
+  const [hint, setHint] = useState<
+    "sideToPlay" | "incorrect" | "correct" | "solved"
+  >("sideToPlay");
+
+  const sideToPlay = getSideToPlayFromFen(tactic.fen);
+
   const loadTactic = async () => {
     try {
       setLoading(true);
       setTactic(await fetchTactic());
+      setHint("sideToPlay");
     } catch (error) {
       console.log("Error loading tactic", { error });
     } finally {
@@ -34,9 +42,37 @@ function App() {
       <TacticBoard
         key={tactic.id}
         tactic={tactic}
-        onIncorrect={() => console.log("Incorrect")}
-        onSolve={() => loadTactic()}
+        onCorrect={() => {
+          setHint("correct");
+          setTimeout(() => setHint("sideToPlay"), 1000);
+        }}
+        onIncorrect={() => {
+          setHint("incorrect");
+          setTimeout(() => setHint("sideToPlay"), 1000);
+        }}
+        onSolve={() => {
+          setHint("solved");
+          loadTactic();
+        }}
       />
+      {hint === "sideToPlay" && (
+        <div className="tactic-hint">
+          {sideToPlay === "b" ? "White" : "Black"} to move
+        </div>
+      )}
+
+      {hint === "correct" && (
+        <div className="tactic-hint tactic-hint-success">Correct!</div>
+      )}
+
+      {hint === "incorrect" && (
+        <div className="tactic-hint tactic-hint-error">Incorrect!</div>
+      )}
+
+      {hint === "solved" && (
+        <div className="tactic-hint tactic-hint-success">Solved!</div>
+      )}
+
       {loading && <div className="overlay-loading">Loading...</div>}
     </div>
   );

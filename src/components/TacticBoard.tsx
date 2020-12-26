@@ -1,19 +1,23 @@
 import React, { useState, useEffect } from "react";
-import { ChessInstance, ShortMove } from "chess.js";
+import { ShortMove } from "chess.js";
 import Chessboard from "chessboardjsx";
 import Tactic from "../types/Tactic";
-
-const Chess = require("chess.js");
+import { getSideToPlayFromFen, makeMove, validateMove } from "../utils";
 
 interface Props {
   tactic: Tactic;
   onIncorrect: () => void;
+  onCorrect: () => void;
   onSolve: () => void;
 }
 
-const TacticBoard: React.FC<Props> = ({ tactic, onIncorrect, onSolve }) => {
+const TacticBoard: React.FC<Props> = ({
+  tactic,
+  onIncorrect,
+  onCorrect,
+  onSolve,
+}) => {
   const [fen, setFen] = useState(tactic.fen);
-  const [orientation] = useState(getSideToPlayFromFen(tactic.fen));
   const [solution, setSolution] = useState(tactic.solution);
 
   useEffect(() => {
@@ -33,6 +37,8 @@ const TacticBoard: React.FC<Props> = ({ tactic, onIncorrect, onSolve }) => {
       setSolution(next.solution);
 
       if (next.solution.length > 0) {
+        onCorrect();
+
         const autoNext = validateMove(
           next.fen,
           next.solution[0],
@@ -56,7 +62,7 @@ const TacticBoard: React.FC<Props> = ({ tactic, onIncorrect, onSolve }) => {
       transitionDuration={200}
       position={fen}
       width={400}
-      orientation={orientation === "b" ? "white" : "black"}
+      orientation={getSideToPlayFromFen(tactic.fen) === "b" ? "white" : "black"}
       onDrop={(move) =>
         handleMove({
           from: move.sourceSquare,
@@ -67,37 +73,5 @@ const TacticBoard: React.FC<Props> = ({ tactic, onIncorrect, onSolve }) => {
     />
   );
 };
-
-function getSideToPlayFromFen(fen: string) {
-  const chess: ChessInstance = new Chess(fen);
-  return chess.turn();
-}
-
-function makeMove(fen: string, move: ShortMove | string) {
-  const chess: ChessInstance = new Chess(fen);
-  const fullMove = chess.move(move);
-  return fullMove ? { fullMove, fen: chess.fen() } : null;
-}
-
-function validateMove(
-  fen: string,
-  move: ShortMove | string,
-  solution: string[]
-): null | { solution: string[]; fen: string } {
-  if (solution.length === 0) {
-    return null;
-  }
-
-  const next = makeMove(fen, move);
-
-  if (next && next.fullMove.san === solution[0]) {
-    return {
-      fen: next.fen,
-      solution: solution.slice(1),
-    };
-  }
-
-  return null;
-}
 
 export default TacticBoard;

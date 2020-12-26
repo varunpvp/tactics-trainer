@@ -16,3 +16,22 @@
   background-color: rgba(255, 255, 255, 0.75);
   z-index: 999;
 }
+
+.tactic-hint {
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  background-color: black;
+  color: white;
+  border-radius: 5px;
+  margin: 8px;
+}
+
+.tactic-hint-success {
+  background-color: green;
+}
+
+.tactic-hint-error {
+  background-color: red;
+}
