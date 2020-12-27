@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import Tactic from "./types/Tactic";
 import TacticBoard from "./components/TacticBoard";
 import axios from "axios";
-import { errorSound, getSideToPlayFromFen, moveSound } from "./utils";
+import { getSideToPlayFromFen } from "./utils";
 
 function App() {
   const [tactics, setTactics] = useState<Tactic[]>([]);
@@ -41,23 +41,17 @@ function App() {
         key={tactic.id}
         tactic={tactic}
         onCorrect={() => {
-          moveSound.play();
           setHint("correct");
           setTimeout(() => setHint("sideToPlay"), 1000);
         }}
         onIncorrect={() => {
-          errorSound.play();
           setHint("incorrect");
           setTimeout(() => setHint("sideToPlay"), 1000);
         }}
         onSolve={() => {
-          moveSound.play();
           setHint("solved");
           setTactics((it) => it.slice(1));
           loadTactic();
-        }}
-        onAutoPlay={() => {
-          moveSound.play();
         }}
       />
       {hint === "sideToPlay" && (

@@ -1,15 +1,6 @@
 import { ChessInstance, ShortMove } from "chess.js";
-import { Howl } from "howler";
 
 const Chess = require("chess.js");
-
-export const moveSound = new Howl({
-  src: ["move.mp3"],
-});
-
-export const errorSound = new Howl({
-  src: ["error.mp3"],
-});
 
 export function getSideToPlayFromFen(fen: string) {
   const chess: ChessInstance = new Chess(fen);

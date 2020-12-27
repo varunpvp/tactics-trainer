@@ -9,7 +9,6 @@ interface Props {
   onIncorrect: () => void;
   onCorrect: () => void;
   onSolve: () => void;
-  onAutoPlay: () => void;
 }
 
 const TacticBoard: React.FC<Props> = ({
@@ -17,7 +16,6 @@ const TacticBoard: React.FC<Props> = ({
   onIncorrect,
   onCorrect,
   onSolve,
-  onAutoPlay,
 }) => {
   const [fen, setFen] = useState(tactic.fen);
   const [solution, setSolution] = useState(tactic.solution);
@@ -27,11 +25,9 @@ const TacticBoard: React.FC<Props> = ({
       const next = makeMove(tactic.fen, tactic.blunderMove);
       if (next) {
         setFen(next.fen);
-        onAutoPlay();
       }
     }, 100);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [tactic]);
 
   const handleMove = (move: string | ShortMove) => {
     const next = validateMove(fen, move, solution);
@@ -52,7 +48,6 @@ const TacticBoard: React.FC<Props> = ({
         if (autoNext) {
           setFen(autoNext.fen);
           setSolution(autoNext.solution);
-          onAutoPlay();
         }
       } else {
         onSolve();
