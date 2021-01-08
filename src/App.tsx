@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import Tactic from "./types/Tactic";
 import TacticBoard from "./components/TacticBoard";
 import axios from "axios";
-import { getSideToPlayFromFen } from "./utils";
+import { getSideToPlayFromFen } from "./utils/chess";
 
 function App() {
   const [tactics, setTactics] = useState<Tactic[]>([]);
